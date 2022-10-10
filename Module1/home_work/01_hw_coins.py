@@ -1,21 +1,21 @@
 import random
 
+lstrnd=["heads","tails"]
 
 class Coin:
     def __init__(self):
         self.side = None
 
     def flip(self) -> None:
-        """
-        Подбрасывание монетки. # heads-орел/tails-решка
-        """
-        self.side = ...  # random: heads/tails
+        self.side = random.choice(lstrnd)
 
-# Задание:
-# 1. Создайте список из n-монеток, n - вводится с клавиатуры
-# 2. Подбросьте(flip) все монетки. У каждой монетки в списке вызовите метод .flip()
-# 3. Выведите соотношение выпавших орлов и решек в процентах
+#n = input('Ввведите кол-во монет:')
+n=4
 
-# Пояснение: когда вы создаете монетку, то она находится в неопределенном состоянии self.side = None, т.е.
-# она находится у вас в руке и не выпала ни орлом ни решкой. Монетка "определеяется" со стороной(орел/решка),
-# только после того, как вы ее подбрасываете(вызываете метод flip())
+list_coin = []
+for i in range(n):
+    list_coin.append(Coin())
+for i in list_coin:
+    i.flip()
+print('Количество орлов: ', len([item for item in list_coin if item.side == "heads"])/n*100)
+print('Количество решек: ', len([item for item in list_coin if item.side == "tails"])/n*100)
