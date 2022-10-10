@@ -1,37 +1,36 @@
 class Item:
     def __init__(self, name: str, weight: float, cost: int):
-        self.name = ...  # Название предмета
-        self.weight = ...  # Вес предмета, в килограммах
-        self.cost = ...  # Цена предмета, пусть будет, в рублях
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
 
 
-def show_item(item: Item) -> str:
-    """
-    Возвращает строковое представление объекта Item
-    """
-    return f"{item.name} вес:{item.weight} цена:{item.cost}"
+class BackPack:  # рюкзак
+    def __init__(self):
+        self.items = []  # Предметы, которые хранятся в рюкзаке
+
+    def add_item(self, item: Item):
+       self.items.append(item)
+
+    def show_items(self):
+        print("В рюкзаке лежат", len(self.items), "предметов")
+        allW=0
+        for numobj in range(len(self.items)):
+            print(numobj+1,')',self.items[numobj].name,"стоимостью в", self.items[numobj].cost)
+            allW+=self.items[numobj].weight
+        print("Общий вес (в кг)", allW)
 
 
-# TODO-1: Дополните конструктор класса Item
+# Создаем предметы
 item1 = Item("Гиря", 25, 500)
 item2 = Item("Арбуз", 4, 300)
-item3 = Item("Ноутбук", 2.5, 22500)
-item4 = Item("Кот", 0.5, 250)
 
-# TODO-2: запустите программу, посмотрите результаты функции show_item()
-print(show_item(item1))
-print(show_item(item2))
-print(show_item(item3))
-print(show_item(item4))
+# Создаем пустой рюкзак
+backpack = BackPack()
 
-# TODO-3: сделайте функцию show_item(), методом show() класса Item
-# print(item1.show())
-# print(item2.show())
-# print(item3.show())
-# print(item4.show())
+# Добавляем пару предметов в рюкзак
+backpack.add_item(item1)
+backpack.add_item(item2)
 
-# Помещаем все объекты item в список:
-items = [item1, item2, item3, item4]
-# TODO-4:  Выведите элементы в виде нумерованного списка, при выводе используйте метод .show()
-for item in items:
-    ...
+# Выводим все предметы в рюкзаке
+backpack.show_items()
